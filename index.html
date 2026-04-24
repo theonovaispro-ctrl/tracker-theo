@@ -576,12 +576,30 @@ async function generatePlan(){
     const text=data.content?.map(c=>c.text||'').join('')||'';
     clearInterval(stepTimer);
     steps.forEach(s=>document.getElementById(s).className='gen-step done');
-    // Parser la réponse JSON
+    // Parser la réponse JSON — enlever les backticks markdown si présents
     let plan;
     try{
-      const jsonMatch=text.match(/\{[\s\S]*\}/);
-      plan=JSON.parse(jsonMatch[0]);
-    }catch(e){plan={raw:text};}
+      // Nettoyer le texte : enlever ```json ... ``` ou ``` ... ```
+      let clean=text.replace(/```json\s*/gi,'').replace(/```\s*/g,'').trim();
+      // Extraire le JSON entre { }
+      const jsonMatch=clean.match(/\{[\s\S]*\}/);
+      if(jsonMatch){
+        plan=JSON.parse(jsonMatch[0]);
+      } else {
+        plan={raw:text};
+      }
+    }catch(e){
+      // Deuxième tentative avec regex plus agressive
+      try{
+        const start=text.indexOf('{');
+        const end=text.lastIndexOf('}');
+        if(start!==-1&&end!==-1){
+          plan=JSON.parse(text.slice(start,end+1));
+        } else {
+          plan={raw:text};
+        }
+      }catch(e2){plan={raw:text};}
+    }
     // Sauvegarder
     userState={
       profile:{...onboardAnswers,generated:true,objectif:onboardAnswers.objectif,generatedAt:Date.now()},
