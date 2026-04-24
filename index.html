@@ -334,19 +334,52 @@ const USERS=[
 // QUESTIONS ONBOARDING
 // ══════════════════════════════════════════════
 const QUESTIONS=[
-  {id:'age',text:'Quel est ton âge ?',type:'number',placeholder:'Ex: 25',unit:'ans'},
-  {id:'poids',text:'Quel est ton poids actuel ?',type:'number',placeholder:'Ex: 75',unit:'kg'},
-  {id:'taille',text:'Quelle est ta taille ?',type:'number',placeholder:'Ex: 175',unit:'cm'},
-  {id:'objectif',text:'Quel est ton objectif principal ?',type:'options',options:['M\'affûter / perdre du gras','Prendre de la masse musculaire','Physique athlétique (force + définition)','Remise en forme générale','Améliorer mes performances sportives']},
-  {id:'niveau',text:'Quel est ton niveau en musculation ?',type:'options',options:['Débutant (moins de 1 an)','Intermédiaire (1–3 ans)','Avancé (3+ ans)']},
-  {id:'seances',text:'Combien de séances par semaine peux-tu faire ?',type:'options',options:['2–3 séances','3–4 séances','4–5 séances','5+ séances']},
-  {id:'activites',text:'Quelles activités pratiques-tu en plus de la muscu ?',type:'options_multi',options:['Course à pied','Natation','Vélo / Cardio','Sports collectifs','Aucune autre activité']},
-  {id:'salle',text:'Quel équipement as-tu ?',type:'options',options:['Salle complète avec tout l\'équipement','Salle avec équipement basique','À domicile avec matériel limité','Mix salle + maison']},
-  {id:'style',text:'Quel style d\'entraînement tu préfères ?',type:'options',options:['Poids libres / charges lourdes','Mix poids du corps + salle','Poids du corps principalement','Cardio + fonctionnel']},
-  {id:'nutrition',text:'Comment manges-tu actuellement ?',type:'options',options:['Plutôt bien, je fais attention','De façon irrégulière','Beaucoup de repas à l\'extérieur','Je suis déjà un régime particulier']},
-  {id:'allergies',text:'As-tu des restrictions alimentaires ?',type:'options_multi',options:['Aucune restriction','Végétarien','Végétalien / Vegan','Intolérant au gluten','Intolérant au lactose','Autres']},
-  {id:'blessures',text:'As-tu des blessures ou limitations physiques ?',type:'text',placeholder:'Ex: douleur genou gauche, périostites... (ou "Aucune")'},
+  // ── PROFIL DE BASE ──
+  {id:'prenom',text:'Quel est ton prénom ?',type:'text',placeholder:'Ex: Gabriel',unit:'',section:'👤 Profil'},
+  {id:'age',text:'Quel est ton âge ?',type:'number',placeholder:'Ex: 25',unit:'ans',section:'👤 Profil'},
+  {id:'poids',text:'Quel est ton poids actuel ?',type:'number',placeholder:'Ex: 75',unit:'kg',section:'👤 Profil'},
+  {id:'taille',text:'Quelle est ta taille ?',type:'number',placeholder:'Ex: 175',unit:'cm',section:'👤 Profil'},
+  {id:'sexe',text:'Tu es...',type:'options',options:['Homme','Femme'],section:'👤 Profil'},
+  {id:'objectif',text:'Quel est ton objectif principal ?',type:'options',options:['M\'affûter / perdre du gras','Prendre de la masse musculaire','Physique athlétique (force + définition)','Remise en forme générale','Améliorer mes performances sportives','Perdre du poids significativement (10kg+)'],section:'🎯 Objectif'},
+  {id:'objectif_delai',text:'Dans combien de temps veux-tu voir des résultats significatifs ?',type:'options',options:['1 mois','3 mois','6 mois','1 an et plus'],section:'🎯 Objectif'},
+  {id:'poids_cible',text:'Quel est ton poids cible idéal ?',type:'number',placeholder:'Ex: 72',unit:'kg',section:'🎯 Objectif'},
+  {id:'motivation',text:'Qu\'est-ce qui te motive le plus ?',type:'options',options:['L\'apparence physique','La santé et le bien-être','Les performances sportives','La confiance en soi','Un événement précis (mariage, été, compétition...)'],section:'🎯 Objectif'},
+
+  // ── SPORT ──
+  {id:'niveau',text:'Quel est ton niveau en musculation ?',type:'options',options:['Débutant — moins de 6 mois','Intermédiaire débutant — 6 mois à 1 an','Intermédiaire — 1 à 3 ans','Avancé — 3 ans et plus'],section:'💪 Sport'},
+  {id:'salle',text:'Quel équipement as-tu ?',type:'options',options:['Salle complète (machines, poids libres, câbles)','Salle basique (barres, haltères, quelques machines)','À domicile avec haltères et barre','Accès à une piscine','Aucun équipement — poids du corps uniquement'],section:'💪 Sport'},
+  {id:'style',text:'Quel style d\'entraînement tu préfères ?',type:'options',options:['Poids lourds / charges maximales','Mix poids du corps + salle','Poids du corps principalement','Cardio + endurance','Fonctionnel / HIIT','Je ne sais pas encore'],section:'💪 Sport'},
+  {id:'activites',text:'Quelles activités pratiquestu en dehors de la muscu ?',type:'options_multi',options:['Course à pied','Natation','Vélo / Spinning','Sports collectifs (foot, basket...)','Arts martiaux / boxe','Yoga / Pilates','Aucune autre activité'],section:'💪 Sport'},
+  {id:'blessures',text:'As-tu des blessures ou douleurs actuelles ?',type:'text',placeholder:'Ex: douleur genou gauche, dos fragile, épaule droite... (ou "Aucune")',section:'💪 Sport'},
+  {id:'cardio_niveau',text:'Comment décrirais-tu ta condition cardio actuelle ?',type:'options',options:['Essoufflement rapide (moins de 10 min d\'effort)','Endurance moyenne (30 min confortable)','Bonne endurance (1h+ sans problème)','Très bonne — je cours régulièrement'],section:'💪 Sport'},
+
+  // ── AGENDA / ORGANISATION ──
+  {id:'jours_dispo',text:'Quels jours de la semaine es-tu disponible pour t\'entraîner ?',type:'options_multi',options:['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'],section:'📅 Organisation'},
+  {id:'creneaux',text:'À quels moments de la journée peux-tu t\'entraîner ?',type:'options_multi',options:['Matin (avant 9h)','Matinée (9h–12h)','Midi (12h–14h)','Après-midi (14h–17h)','Soir (17h–20h)','Soirée (après 20h)'],section:'📅 Organisation'},
+  {id:'duree_seance',text:'Combien de temps peux-tu consacrer à chaque séance ?',type:'options',options:['30–45 minutes','45–60 minutes','60–75 minutes','75–90 minutes','Plus de 90 minutes'],section:'📅 Organisation'},
+  {id:'contraintes',text:'As-tu des contraintes particulières à prendre en compte ?',type:'text',placeholder:'Ex: travail décalé, enfants le mercredi, déplacements professionnels... (ou "Aucune")',section:'📅 Organisation'},
+  {id:'recup',text:'Comment gères-tu ta récupération actuellement ?',type:'options_multi',options:['Je dors 7h+ par nuit','Je fais des étirements','Je prends des jours de repos complets','Je n\'ai pas de routine de récupération','Je fais de la méditation / relaxation'],section:'📅 Organisation'},
+
+  // ── NUTRITION ──
+  {id:'nutrition_actuelle',text:'Comment manges-tu actuellement ?',type:'options',options:['Je mange très bien et de façon équilibrée','Plutôt bien mais avec des écarts fréquents','De façon irrégulière — je saute des repas','Beaucoup de fast food / repas à l\'extérieur','Je ne fais pas attention du tout'],section:'🥗 Nutrition'},
+  {id:'nb_repas',text:'Combien de repas manges-tu par jour en moyenne ?',type:'options',options:['1 à 2 repas','3 repas','3 repas + collations','4 à 5 repas / collations répartis'],section:'🥗 Nutrition'},
+  {id:'allergies',text:'As-tu des restrictions ou allergies alimentaires ?',type:'options_multi',options:['Aucune restriction','Végétarien','Végétalien / Vegan','Intolérant au gluten','Intolérant au lactose','Halal','Casher','Allergie aux noix / fruits à coque','Autres'],section:'🥗 Nutrition'},
+  {id:'aliments_aimes',text:'Quels types d\'aliments tu aimes manger ? (protéines)',type:'options_multi',options:['Poulet / dinde','Bœuf / porc','Poisson / fruits de mer','Œufs','Tofu / légumineuses','Produits laitiers (fromage, yogourt)','Je mange de tout'],section:'🥗 Nutrition'},
+  {id:'aliments_dislikes',text:'Y a-t-il des aliments que tu n\'aimes pas du tout ?',type:'text',placeholder:'Ex: poisson, brocoli, légumineuses... (ou "Aucun")',section:'🥗 Nutrition'},
+  {id:'cuisine_style',text:'Quel style de cuisine tu préfères ?',type:'options_multi',options:['Québécois / Nord-américain','Méditerranéen','Asiatique','Mexicain / Latino','Middle-East / Libanais','Je n\'ai pas de préférence'],section:'🥗 Nutrition'},
+  {id:'cuisine_temps',text:'Combien de temps peux-tu consacrer à cuisiner par jour ?',type:'options',options:['Moins de 15 minutes (meal prep uniquement)','15 à 30 minutes','30 à 60 minutes','Plus d\'une heure — j\'adore cuisiner'],section:'🥗 Nutrition'},
+  {id:'budget_courses',text:'Quel est ton budget hebdomadaire pour les courses (CAD) ?',type:'options',options:['Moins de 75$ / semaine','75$ à 100$ / semaine','100$ à 150$ / semaine','150$ à 200$ / semaine','Plus de 200$ / semaine'],section:'🛒 Courses'},
+  {id:'ou_courses',text:'Où fais-tu généralement tes courses à Montréal ?',type:'options_multi',options:['IGA','Metro','Maxi','Costco','Marché Jean-Talon / marchés locaux','PA (Les Aliments P.A.)','Provigo / Loblaws','Amazon Fresh / livraison'],section:'🛒 Courses'},
+  {id:'meal_prep',text:'Es-tu prêt à faire du meal prep (préparer tes repas à l\'avance) ?',type:'options',options:['Oui — je veux tout préparer le dimanche','Oui — je peux préparer 2x par semaine','Un peu — juste les bases (viande, riz)','Non — je préfère cuisiner au jour le jour'],section:'🛒 Courses'},
+
+  // ── COMPLÉMENTS / STYLE DE VIE ──
+  {id:'complements',text:'Prends-tu des compléments alimentaires ?',type:'options_multi',options:['Créatine','Whey / protéines en poudre','Multivitamines','Vitamine D','Oméga-3','Magnésium / Zinc','Caféine / pré-entraînement','Aucun complément'],section:'💊 Style de vie'},
+  {id:'alcool',text:'Consommes-tu de l\'alcool ?',type:'options',options:['Jamais','Occasionnellement (moins d\'une fois par semaine)','1 à 2 fois par semaine','Plus de 3 fois par semaine'],section:'💊 Style de vie'},
+  {id:'stress',text:'Comment évalues-tu ton niveau de stress quotidien ?',type:'options',options:['Faible — je suis plutôt zen','Modéré — quelques périodes de stress','Élevé — souvent stressé','Très élevé — stress chronique'],section:'💊 Style de vie'},
+  {id:'sommeil',text:'Combien d\'heures dors-tu par nuit en moyenne ?',type:'options',options:['Moins de 6h','6 à 7h','7 à 8h','Plus de 8h'],section:'💊 Style de vie'},
+  {id:'job_type',text:'Ton travail est principalement...',type:'options',options:['Sédentaire (bureau, télétravail)','Légèrement actif (quelques déplacements)','Actif (debout, marche beaucoup)','Très actif (travail physique)'],section:'💊 Style de vie'},
 ];
+
 
 // ══════════════════════════════════════════════
 // STATE
@@ -453,7 +486,7 @@ function renderQuestion(){
   const q=QUESTIONS[onboardStep];
   const total=QUESTIONS.length;
   document.getElementById('progress-fill').style.width=((onboardStep/total)*100)+'%';
-  document.getElementById('progress-label').textContent='Question '+(onboardStep+1)+' / '+total;
+  document.getElementById('progress-label').textContent='Question '+(onboardStep+1)+' / '+total+(q.section?' · '+q.section:'');
   document.getElementById('question-text').textContent=q.text;
   const cont=document.getElementById('options-container');
   selectedOptions=Array.isArray(onboardAnswers[q.id])?[...onboardAnswers[q.id]]:[];
@@ -564,71 +597,54 @@ async function generatePlan(){
 
 function buildOnboardPrompt(){
   const a=onboardAnswers;
-  return `Tu es un coach sportif et nutritionnel expert. Génère un plan complet et personnalisé pour cet utilisateur.
-
-PROFIL :
-- Nom: ${currentUser.name}
-- Âge: ${a.age} ans
-- Poids: ${a.poids} kg
-- Taille: ${a.taille} cm
-- Objectif: ${a.objectif}
-- Niveau musculation: ${a.niveau}
-- Séances/semaine: ${a.seances}
-- Activités: ${Array.isArray(a.activites)?a.activites.join(', '):a.activites}
-- Équipement: ${a.salle}
-- Style préféré: ${a.style}
-- Nutrition actuelle: ${a.nutrition}
-- Restrictions alimentaires: ${Array.isArray(a.allergies)?a.allergies.join(', '):a.allergies}
-- Blessures/limitations: ${a.blessures}
-
-Génère un JSON complet avec cette structure exacte (réponds UNIQUEMENT avec le JSON, sans texte avant ou après) :
-{
-  "resume": "Résumé du profil en 2-3 phrases",
-  "objectifDetail": "Explication de l'objectif et de la stratégie",
-  "macros": {
-    "kcal_muscu": 0,
-    "prot_muscu": 0,
-    "glu_muscu": 0,
-    "lip_muscu": 0,
-    "kcal_repos": 0,
-    "prot_repos": 0,
-    "glu_repos": 0,
-    "lip_repos": 0
-  },
-  "planning": [
-    {"jour": "Lundi", "type": "muscu", "label": "Push", "note": "description courte"},
-    {"jour": "Mardi", "type": "muscu", "label": "Pull", "note": ""},
-    {"jour": "Mercredi", "type": "repos", "label": "Repos", "note": ""},
-    {"jour": "Jeudi", "type": "muscu", "label": "Legs", "note": ""},
-    {"jour": "Vendredi", "type": "repos", "label": "Repos", "note": ""},
-    {"jour": "Samedi", "type": "cardio", "label": "Cardio", "note": ""},
-    {"jour": "Dimanche", "type": "repos", "label": "Repos", "note": ""}
-  ],
-  "seances": [
-    {
-      "nom": "Push",
-      "exercices": [
-        {"nom": "Développé couché", "tag": "salle", "series": 4, "reps": "8", "charge_s1": "70", "charge_s2": "75", "charge_s3": "80", "charge_s4": "80"},
-        {"nom": "Dips lestés", "tag": "PDC", "series": 3, "reps": "12", "charge_s1": "+10", "charge_s2": "+12.5", "charge_s3": "+15", "charge_s4": "+15"}
-      ]
-    },
-    {
-      "nom": "Pull",
-      "exercices": []
-    },
-    {
-      "nom": "Legs",
-      "exercices": []
-    }
-  ],
-  "nutrition": {
-    "repas": ["Déjeuner", "Collation pré-séance", "Dîner"],
-    "aliments_base": ["Poulet", "Riz complet", "Œufs", "Légumes", "Huile d'olive"],
-    "conseils": "3-4 conseils nutritionnels personnalisés"
-  },
-  "planTexte": "Résumé complet du plan sur 3 mois en texte lisible, incluant les phases, objectifs par semaine, conseils clés. Environ 300-400 mots."
-}`;
+  const arr=v=>Array.isArray(v)?v.join(', '):v||'Non précisé';
+  const prenom=a.prenom||currentUser.name.split(' ')[0];
+  return 'Tu es un coach sportif et nutritionnel expert basé à Montréal, Canada. Génère un plan COMPLET, DÉTAILLÉ et HYPER-PERSONNALISÉ.\n\n'
+    +'PROFIL:\nPrénom: '+prenom+'\nÂge: '+a.age+' ans | Poids: '+a.poids+'kg | Taille: '+a.taille+'cm | Sexe: '+(a.sexe||'N/A')+'\n'
+    +'Poids cible: '+a.poids_cible+'kg | Délai: '+a.objectif_delai+'\nObjectif: '+a.objectif+' | Motivation: '+a.motivation+'\n\n'
+    +'SPORT:\nNiveau: '+a.niveau+'\nÉquipement: '+a.salle+'\nStyle préféré: '+a.style+'\n'
+    +'Activités complémentaires: '+arr(a.activites)+'\nCondition cardio: '+a.cardio_niveau+'\nBlessures: '+a.blessures+'\n\n'
+    +'AGENDA:\nJours disponibles: '+arr(a.jours_dispo)+'\nCréneaux: '+arr(a.creneaux)+'\nDurée/séance: '+a.duree_seance+'\nContraintes: '+a.contraintes+'\nRécupération: '+arr(a.recup)+'\n\n'
+    +'NUTRITION:\nHabitudes: '+a.nutrition_actuelle+'\nRepas/jour: '+a.nb_repas+'\nRestrictions: '+arr(a.allergies)+'\n'
+    +'Protéines aimées: '+arr(a.aliments_aimes)+'\nAliments non aimés: '+a.aliments_dislikes+'\nCuisine: '+arr(a.cuisine_style)+'\nTemps cuisine: '+a.cuisine_temps+'\n\n'
+    +'COURSES (Montréal):\nBudget: '+a.budget_courses+'\nÉpiceries: '+arr(a.ou_courses)+'\nMeal prep: '+a.meal_prep+'\n\n'
+    +'STYLE DE VIE:\nCompléments actuels: '+arr(a.complements)+'\nAlcool: '+a.alcool+'\nStress: '+a.stress+'\nSommeil: '+a.sommeil+'\nTravail: '+a.job_type+'\n\n'
+    +'Génère UNIQUEMENT un JSON valide (sans texte avant ou après, sans markdown) avec cette structure:\n'
+    +'{"resume":"3-4 phrases très personnalisées avec le prénom",'
+    +'"objectifDetail":"Analyse détaillée de la stratégie sur 3 mois",'
+    +'"macros":{"kcal_muscu":0,"prot_muscu":0,"glu_muscu":0,"lip_muscu":0,"kcal_repos":0,"prot_repos":0,"glu_repos":0,"lip_repos":0},'
+    +'"planning":['
+    +'{"jour":"Lundi","type":"muscu","label":"Push","heure":"17h30","duree":"60 min","note":"adapté aux dispos"},'
+    +'{"jour":"Mardi","type":"repos","label":"Repos actif","heure":"","duree":"","note":""},'
+    +'{"jour":"Mercredi","type":"muscu","label":"Pull","heure":"17h30","duree":"60 min","note":""},'
+    +'{"jour":"Jeudi","type":"repos","label":"Repos","heure":"","duree":"","note":""},'
+    +'{"jour":"Vendredi","type":"muscu","label":"Legs","heure":"17h30","duree":"60 min","note":""},'
+    +'{"jour":"Samedi","type":"cardio","label":"Cardio","heure":"10h","duree":"30 min","note":""},'
+    +'{"jour":"Dimanche","type":"repos","label":"Repos","heure":"","duree":"meal prep recommandé","note":""}],'
+    +'"seances":['
+    +'{"nom":"Push","description":"objectif de la séance","exercices":['
+    +'{"nom":"Développé couché barre","tag":"salle","series":4,"reps":"8","charge_s1":"60","charge_s2":"65","charge_s3":"70","charge_s4":"72.5","conseil":"Coudes à 45°"},'
+    +'{"nom":"Dips lestés","tag":"PDC","series":3,"reps":"10","charge_s1":"+5","charge_s2":"+7.5","charge_s3":"+10","charge_s4":"+12.5","conseil":"Descendre à 90°"}]},'
+    +'{"nom":"Pull","description":"","exercices":['
+    +'{"nom":"Tractions pronation","tag":"PDC","series":4,"reps":"max","charge_s1":"PDC","charge_s2":"+2.5","charge_s3":"+5","charge_s4":"+7.5","conseil":""},'
+    +'{"nom":"Rowing barre","tag":"salle","series":3,"reps":"10","charge_s1":"40","charge_s2":"45","charge_s3":"50","charge_s4":"52.5","conseil":""}]},'
+    +'{"nom":"Legs","description":"","exercices":['
+    +'{"nom":"Squat barre","tag":"salle","series":4,"reps":"8","charge_s1":"60","charge_s2":"65","charge_s3":"70","charge_s4":"75","conseil":""},'
+    +'{"nom":"Leg press","tag":"salle","series":3,"reps":"12","charge_s1":"100","charge_s2":"110","charge_s3":"120","charge_s4":"130","conseil":""}]}],'
+    +'"liste_courses":{'
+    +'"budget_total":"'+a.budget_courses+'",'
+    +'"epicerie_recommandee":"Maxi ou IGA selon disponibilité",'
+    +'"categories":['
+    +'{"nom":"Protéines","items":[{"produit":"Poitrines de poulet","quantite":"1.5kg","prix_estime":"16$","ou":"Maxi"},{"produit":"Oeufs extra-gros","quantite":"2 douzaines","prix_estime":"9$","ou":"Maxi"},{"produit":"Thon en conserve","quantite":"4 boites","prix_estime":"8$","ou":"Maxi"}]},'
+    +'{"nom":"Glucides","items":[{"produit":"Riz complet","quantite":"2kg","prix_estime":"6$","ou":"Maxi"},{"produit":"Pain complet","quantite":"1 miche","prix_estime":"4$","ou":"IGA"},{"produit":"Flocons davoine","quantite":"1kg","prix_estime":"5$","ou":"Maxi"}]},'
+    +'{"nom":"Légumes et Fruits","items":[{"produit":"Épinards","quantite":"300g","prix_estime":"4$","ou":"Maxi"},{"produit":"Bananes","quantite":"1 régime","prix_estime":"2$","ou":"Maxi"},{"produit":"Brocoli","quantite":"2 têtes","prix_estime":"4$","ou":"Maxi"}]},'
+    +'{"nom":"Lipides","items":[{"produit":"Huile dolive extra-vierge","quantite":"750ml","prix_estime":"10$","ou":"IGA"}]}],'
+    +'"meal_prep_guide":"Guide étape par étape pour préparer les repas en 2h le dimanche",'
+    +'"astuces_budget":"3-4 astuces économies à Montréal"},'
+    +'"complements_recommandes":[{"nom":"Créatine monohydrate","dose":"5g/jour","moment":"Post-séance","prix_mensuel":"~12$"},{"nom":"Whey protéine","dose":"30g post-séance","moment":"30 min après entraînement","prix_mensuel":"~50$"}],'
+    +'"planTexte":"Plan TRÈS DÉTAILLÉ minimum 600 mots: Phase 1 semaines 1-4, Phase 2 semaines 5-8, Phase 3 semaines 9-12. Inclure exemples repas concrets selon préférences, gestion stress et sommeil, conseils récupération. Très personnalisé avec le prénom '+prenom+'."}';
 }
+
 
 function initUserState(){
   if(!userState.sport)userState.sport={};
@@ -871,7 +887,51 @@ function saveNutriException(v){
 function renderPlan(){
   const plan=userState.plan;
   if(!plan){document.getElementById('plan-display').textContent='Aucun plan généré.';return;}
-  const txt=plan.planTexte||plan.raw||JSON.stringify(plan,null,2);
+  let txt='';
+  // Planning hebdomadaire
+  if(plan.planning&&plan.planning.length){
+    txt+='📅 PLANNING HEBDOMADAIRE\n';
+    txt+='─'.repeat(40)+'\n';
+    plan.planning.forEach(j=>{
+      if(j.type!=='repos'&&j.heure){
+        txt+=j.jour+' → '+j.label+' | '+j.heure+' | '+j.duree+(j.note?' ('+j.note+')':'')+'\n';
+      } else {
+        txt+=j.jour+' → '+j.label+(j.note?' — '+j.note:'')+'\n';
+      }
+    });
+    txt+='\n';
+  }
+  // Liste de courses
+  if(plan.liste_courses){
+    const lc=plan.liste_courses;
+    txt+='🛒 LISTE DE COURSES — '+lc.budget_total+'\n';
+    txt+='─'.repeat(40)+'\n';
+    txt+='Épicerie recommandée : '+lc.epicerie_recommandee+'\n\n';
+    if(lc.categories){
+      lc.categories.forEach(cat=>{
+        txt+=cat.nom.toUpperCase()+'\n';
+        cat.items.forEach(item=>{
+          txt+='  • '+item.produit+' ('+item.quantite+') — '+item.prix_estime+' @ '+item.ou+'\n';
+        });
+        txt+='\n';
+      });
+    }
+    if(lc.meal_prep_guide){txt+='🍳 MEAL PREP\n'+lc.meal_prep_guide+'\n\n';}
+    if(lc.astuces_budget){txt+='💡 ASTUCES BUDGET\n'+lc.astuces_budget+'\n\n';}
+  }
+  // Compléments
+  if(plan.complements_recommandes&&plan.complements_recommandes.length){
+    txt+='💊 COMPLÉMENTS RECOMMANDÉS\n';
+    txt+='─'.repeat(40)+'\n';
+    plan.complements_recommandes.forEach(c=>{
+      txt+='• '+c.nom+' — '+c.dose+' | '+c.moment+' | '+c.prix_mensuel+'/mois\n';
+    });
+    txt+='\n';
+  }
+  // Plan texte complet
+  txt+='📋 TON PLAN COMPLET\n';
+  txt+='─'.repeat(40)+'\n';
+  txt+=plan.planTexte||plan.raw||JSON.stringify(plan,null,2);
   document.getElementById('plan-display').textContent=txt;
 }
 
