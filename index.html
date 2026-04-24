@@ -567,7 +567,7 @@ async function generatePlan(){
         'anthropic-dangerous-direct-browser-access':'true'
       },
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
+        model:'claude-sonnet-4-5',
         max_tokens:8000,
         messages:[{role:'user',content:prompt}]
       })
@@ -981,7 +981,7 @@ async function callAI(prompt,targetId){
         'anthropic-version':'2023-06-01',
         'anthropic-dangerous-direct-browser-access':'true'
       },
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:800,messages:[{role:'user',content:prompt}]})
     });
     const data=await res.json();
     const text=data.content?.map(c=>c.text||'').join('')||'Erreur.';
